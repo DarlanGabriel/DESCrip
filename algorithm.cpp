@@ -161,8 +161,11 @@ int main(){
     permut(palbin, pc1);
     cout << pc1 << "\n";
 
-    //c0 = pc1.substr(0, 32);
-    //d0 = pc1.substr(32, 32);
+    c0 = pc1.substr(0, 28);
+    d0 = pc1.substr(28, 28);
+
+    cout << c0 << "\n";
+    cout << d0 << "\n";
 
     return 0;
 }
