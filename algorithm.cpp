@@ -5,9 +5,9 @@
 #include <type_traits>
 using namespace std;
 
-void convHex(string palavra, string &palcon, char * b){
-    for(int i = 0; i < palavra.length(); i++){
-        sprintf(b, "%02x", palavra[i]);
+void convHex(string chave, string &palcon, char * b){
+    for(int i = 0; i < chave.length(); i++){
+        sprintf(b, "%02x", chave[i]);
         palcon.push_back(b[0]);
         palcon.push_back(b[1]);
     }
@@ -109,13 +109,39 @@ void convBin(string palcon, string &palbin){
     }
 }
 
+void permut(string palbin, string &pc1){
+    int x = 56;
+    int y = x;
+    while(x != 27){
+        pc1.push_back(palbin[x]);
+        x = x - 8;
+        if(x < 0){
+            y = y + 1;
+            x = y;
+        }
+    }
+    x = 62;
+    y = x;
+    while(x != -5){
+        pc1.push_back(palbin[x]);
+        x = x - 8;
+        if(x < 0){
+            y = y - 1;
+            x = y;
+        }
+    }
+    
+}
+
 int main(){
     char b[2], c[65];
     int i = 0;
-    string palavra, palcon, paldes; //parte hexadecimal
+    string chave, palcon, paldes; //parte hexadecimal
     string palbin;
-    getline(cin, palavra);
-    convHex(palavra, palcon, b);
+    string pc1;
+
+    getline(cin, chave);
+    convHex(chave, palcon, b);
     while(palcon[i] != 0 && !(palcon[i] < 33)){
         cout << palcon[i];
         c[i] = palcon[i];
@@ -127,5 +153,9 @@ int main(){
 
     convBin(palcon, palbin);
     cout << palbin << "\n";
+
+    permut(palbin, pc1);
+    cout << pc1 << "\n";
+
     return 0;
 }
