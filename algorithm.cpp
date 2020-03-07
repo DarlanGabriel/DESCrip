@@ -1,5 +1,5 @@
 #include <iostream>
-#include <string.h>
+#include <string>
 #include <cstdlib>
 #include <cstddef>
 #include <type_traits>
@@ -110,27 +110,34 @@ void convBin(string palcon, string &palbin){
 }
 
 void permut(string palbin, string &pc1){
-    int x = 56;
+    int x = 57;
     int y = x;
-    while(x != 27){
-        pc1.push_back(palbin[x]);
+    int i = 0;
+    while(x != 28){
+        i++;
+        pc1.push_back(palbin[x-1]);
         x = x - 8;
         if(x < 0){
             y = y + 1;
             x = y;
         }
     }
-    x = 62;
+    x = 63;
     y = x;
-    while(x != -5){
-        pc1.push_back(palbin[x]);
+    while(x != -3){
+        i++;
+        pc1.push_back(palbin[x-1]);
         x = x - 8;
-        if(x < 0){
+        if(x < 0 && x != -3){
             y = y - 1;
             x = y;
         }
     }
-    
+    x = 28;
+    while(x > 0){
+        pc1.push_back(palbin[x-1]);
+        x = x - 8;
+    }
 }
 
 int main(){
@@ -138,16 +145,13 @@ int main(){
     int i = 0;
     string chave, palcon, paldes; //parte hexadecimal
     string palbin;
-    string pc1;
+    string pc1, c0, d0;
 
     getline(cin, chave);
     convHex(chave, palcon, b);
-    while(palcon[i] != 0 && !(palcon[i] < 33)){
-        cout << palcon[i];
-        c[i] = palcon[i];
-        i++;
-    }
-    cout << "\n";
+
+    cout << palcon << "\n";
+
     desHex(c, paldes, b);
     cout << paldes << "\n";
 
@@ -156,6 +160,9 @@ int main(){
 
     permut(palbin, pc1);
     cout << pc1 << "\n";
+
+    //c0 = pc1.substr(0, 32);
+    //d0 = pc1.substr(32, 32);
 
     return 0;
 }
