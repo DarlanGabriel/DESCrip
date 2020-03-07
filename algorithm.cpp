@@ -7,15 +7,21 @@ void conv(char c, char *b){
     sprintf(b, "%02x", c);
 }
 
-int main(){
-    char palavra[4], palcon[7];
-    char b[2];
-    scanf("%s", palavra);
-    for(int i = 0; i < sizeof(palavra) - 1; i++){
+string convHex(string palavra, string palcon, char * b){
+    for(int i = 0; i < palavra.length(); i++){
         conv(palavra[i], b);
         palcon[i * 2] = b[0];
         palcon[i * 2 + 1] = b[1];
+        cout << palcon[i * 2] << palcon[i * 2 + 1];
     }
-    printf("%s \n", palcon);
+    return palcon;
+}
+
+int main(){
+    char b[2];
+    string palavra, palcon;
+    getline(cin, palavra);
+    palcon = convHex(palavra, palcon, b);
+    cout << palcon << "\n";
     return 0;
 }
