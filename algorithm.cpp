@@ -140,12 +140,32 @@ void permut(string palbin, string &pc1){
     }
 }
 
+void dezesseis(string ck, string *kn){
+    int x = 1;
+    int i = 1;
+    string aux;
+    while(i < 17){
+        aux = ck.substr(x, 28 - x) + ck.substr(0, x);
+        kn[i - 1] = aux;
+        aux.clear();
+        if(i == 1 || i == 8 || i == 15){
+            x = x + 1;
+        }else{
+            x = x + 2;
+        }
+        i++;
+    }
+}
+
+
+
 int main(){
     char b[2], c[65];
     int i = 0;
     string chave, palcon, paldes; //parte hexadecimal
     string palbin;
     string pc1, c0, d0;
+    string cn[16], dn[16], kn[16];
 
     getline(cin, chave);
     convHex(chave, palcon, b);
@@ -166,6 +186,17 @@ int main(){
 
     cout << c0 << "\n";
     cout << d0 << "\n";
+
+    dezesseis(c0, cn);
+    dezesseis(d0, dn);
+
+    for(int i = 0; i < 16; i++){
+        cout << cn[i] << "\n";
+    }
+
+    for(int i = 0; i < 16; i++){
+        cout << dn[i] << "\n";
+    }
 
     return 0;
 }
