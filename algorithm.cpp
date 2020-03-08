@@ -112,9 +112,7 @@ void convBin(string palcon, string &palbin){
 void permut(string palbin, string &pc1){
     int x = 57;
     int y = x;
-    int i = 0;
     while(x != 28){
-        i++;
         pc1.push_back(palbin[x-1]);
         x = x - 8;
         if(x < 0){
@@ -125,7 +123,6 @@ void permut(string palbin, string &pc1){
     x = 63;
     y = x;
     while(x != -3){
-        i++;
         pc1.push_back(palbin[x-1]);
         x = x - 8;
         if(x < 0 && x != -3){
@@ -215,6 +212,29 @@ void gerandoK(string cndn, string &pc2){
     pc2.push_back(cndn[31]);
 }
 
+void permutP(string palbin, string &ip){
+    int y = 58;
+    int x = y;
+    while(x != 0){
+        ip.push_back(palbin[x - 1]);
+        x = x - 8;
+        if(x < 0){
+            y = y + 2;
+            x = y;
+        }
+    }
+    y = 57;
+    x = y;
+    while(x != -1){
+        ip.push_back(palbin[x - 1]);
+        x = x - 8;
+        if(x < 0 && x != -1){
+            y = y + 2;
+            x = y;
+        }
+    }
+}
+
 
 
 int main(){
@@ -224,6 +244,7 @@ int main(){
     string palbin;
     string pc1, c0, d0;
     string cn[16], dn[16], kn[16], cndn[16], pc2[16];
+    string palavra, ip;
 
     getline(cin, chave);
     convHex(chave, palcon, b);
@@ -265,6 +286,21 @@ int main(){
         gerandoK(cndn[i], pc2[i]);
         cout << pc2[i] << "\n";
     }
+
+    palbin.clear();
+    palcon.clear();
+
+    getline(cin, palavra);
+
+    convHex(palavra, palcon, b);
+
+    cout << palcon << "\n";
+
+    convBin(palcon, palbin);
+    cout << palbin << "\n";
+
+    permutP(palbin, ip);
+    cout << ip << "\n";
 
     return 0;
 }
