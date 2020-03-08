@@ -157,6 +157,64 @@ void dezesseis(string ck, string *kn){
     }
 }
 
+void gerandoK(string cndn, string &pc2){
+    pc2.push_back(cndn[13]);
+    pc2.push_back(cndn[16]);
+    pc2.push_back(cndn[10]);
+    pc2.push_back(cndn[23]);
+    pc2.push_back(cndn[0]);
+    pc2.push_back(cndn[4]);
+
+    pc2.push_back(cndn[2]);
+    pc2.push_back(cndn[27]);
+    pc2.push_back(cndn[14]);
+    pc2.push_back(cndn[5]);
+    pc2.push_back(cndn[20]);
+    pc2.push_back(cndn[9]);
+
+    pc2.push_back(cndn[22]);
+    pc2.push_back(cndn[18]);
+    pc2.push_back(cndn[11]);
+    pc2.push_back(cndn[3]);
+    pc2.push_back(cndn[25]);
+    pc2.push_back(cndn[7]);
+
+    pc2.push_back(cndn[15]);
+    pc2.push_back(cndn[6]);
+    pc2.push_back(cndn[26]);
+    pc2.push_back(cndn[19]);
+    pc2.push_back(cndn[12]);
+    pc2.push_back(cndn[1]);
+
+    pc2.push_back(cndn[40]);
+    pc2.push_back(cndn[51]);
+    pc2.push_back(cndn[30]);
+    pc2.push_back(cndn[36]);
+    pc2.push_back(cndn[46]);
+    pc2.push_back(cndn[54]);
+
+    pc2.push_back(cndn[29]);
+    pc2.push_back(cndn[39]);
+    pc2.push_back(cndn[50]);
+    pc2.push_back(cndn[44]);
+    pc2.push_back(cndn[32]);
+    pc2.push_back(cndn[47]);
+
+    pc2.push_back(cndn[43]);
+    pc2.push_back(cndn[48]);
+    pc2.push_back(cndn[38]);
+    pc2.push_back(cndn[55]);
+    pc2.push_back(cndn[33]);
+    pc2.push_back(cndn[52]);
+
+    pc2.push_back(cndn[45]);
+    pc2.push_back(cndn[41]);
+    pc2.push_back(cndn[49]);
+    pc2.push_back(cndn[35]);
+    pc2.push_back(cndn[28]);
+    pc2.push_back(cndn[31]);
+}
+
 
 
 int main(){
@@ -165,7 +223,7 @@ int main(){
     string chave, palcon, paldes; //parte hexadecimal
     string palbin;
     string pc1, c0, d0;
-    string cn[16], dn[16], kn[16], cndn[16], kk[16];
+    string cn[16], dn[16], kn[16], cndn[16], pc2[16];
 
     getline(cin, chave);
     convHex(chave, palcon, b);
@@ -201,6 +259,11 @@ int main(){
     for(int i = 0; i < 16; i++){
         cndn[i] = cn[i] + dn[i];
         cout << cndn[i] << "\n";
+    }
+
+    for(int i = 0; i < 16; i++){
+        gerandoK(cndn[i], pc2[i]);
+        cout << pc2[i] << "\n";
     }
 
     return 0;
