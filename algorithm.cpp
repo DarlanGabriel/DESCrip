@@ -235,6 +235,44 @@ void permutP(string palbin, string &ip){
     }
 }
 
+void cripto(string &r0, string &l0, string pc2, string aux){
+    aux = l0;
+    l0.clear();
+    l0 = r0;
+    ajuste(r0, l0, aux, pc2);
+}
+
+void ajuste(string &r0, string l0, string pc2, string aux){
+    string nova;
+    nova.push_back(l0[31]);
+    for(int i = 1; i < 6; i++){
+        nova.push_back(l0[i - 1]);
+    }
+    for(int i = 4; i < 10; i++){
+        nova.push_back(l0[i - 1]);
+    }
+    for(int i = 8; i < 14; i++){
+        nova.push_back(l0[i - 1]);
+    }
+    for(int i = 12; i < 18; i++){
+        nova.push_back(l0[i - 1]);
+    }
+    for(int i = 16; i < 22; i++){
+        nova.push_back(l0[i - 1]);
+    }
+    for(int i = 20; i < 26; i++){
+        nova.push_back(l0[i - 1]);
+    }
+    for(int i = 24; i < 30; i++){
+        nova.push_back(l0[i - 1]);
+    }
+    for(int i = 28; i < 33; i++){
+        nova.push_back(l0[i - 1]);
+    }
+    nova.push_back(l0[0]);
+    
+}
+
 
 
 int main(){
@@ -244,7 +282,7 @@ int main(){
     string palbin;
     string pc1, c0, d0;
     string cn[16], dn[16], kn[16], cndn[16], pc2[16];
-    string palavra, ip;
+    string palavra, ip, l0, r0, aux;
 
     getline(cin, chave);
     convHex(chave, palcon, b);
@@ -301,6 +339,9 @@ int main(){
 
     permutP(palbin, ip);
     cout << ip << "\n";
+
+    l0 = ip.substr(0, 32);
+    r0 = ip.substr(32, 32);
 
     return 0;
 }
