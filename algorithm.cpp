@@ -165,7 +165,7 @@ int main(){
     string chave, palcon, paldes; //parte hexadecimal
     string palbin;
     string pc1, c0, d0;
-    string cn[16], dn[16], kn[16];
+    string cn[16], dn[16], kn[16], cndn[16], kk[16];
 
     getline(cin, chave);
     convHex(chave, palcon, b);
@@ -196,6 +196,11 @@ int main(){
 
     for(int i = 0; i < 16; i++){
         cout << dn[i] << "\n";
+    }
+
+    for(int i = 0; i < 16; i++){
+        cndn[i] = cn[i] + dn[i];
+        cout << cndn[i] << "\n";
     }
 
     return 0;
