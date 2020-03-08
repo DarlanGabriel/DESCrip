@@ -235,45 +235,62 @@ void permutP(string palbin, string &ip){
     }
 }
 
-void cripto(string &r0, string &l0, string pc2, string aux){
+void ajuste(string &r0){
+    string nova;
+    nova.push_back(r0[31]);
+    for(int i = 1; i < 6; i++){
+        nova.push_back(r0[i - 1]);
+    }
+    for(int i = 4; i < 10; i++){
+        nova.push_back(r0[i - 1]);
+    }
+    for(int i = 8; i < 14; i++){
+        nova.push_back(r0[i - 1]);
+    }
+    for(int i = 12; i < 18; i++){
+        nova.push_back(r0[i - 1]);
+    }
+    for(int i = 16; i < 22; i++){
+        nova.push_back(r0[i - 1]);
+    }
+    for(int i = 20; i < 26; i++){
+        nova.push_back(r0[i - 1]);
+    }
+    for(int i = 24; i < 30; i++){
+        nova.push_back(r0[i - 1]);
+    }
+    for(int i = 28; i < 33; i++){
+        nova.push_back(r0[i - 1]);
+    }
+    nova.push_back(r0[0]);
+    r0.clear();
+    r0 = nova;
+
+    cout << r0 << "\n";
+}
+
+void xorei(string &r0, string pc2){
+    string aux;
+    for(int i = 0; i < 48; i++){
+        if(r0[i] == pc2[i]){
+            aux.push_back('0');
+        }else{
+            aux.push_back('1');
+        }
+    }
+    r0.clear();
+    r0 = aux;
+    cout << pc2 << "\n";
+    cout << r0 << "\n";
+}
+
+void cripto(string &r0, string &l0, string *pc2, string aux){
     aux = l0;
     l0.clear();
     l0 = r0;
-    ajuste(r0, l0, aux, pc2);
+    ajuste(r0);
+    xorei(r0, pc2[0]);
 }
-
-void ajuste(string &r0, string l0, string pc2, string aux){
-    string nova;
-    nova.push_back(l0[31]);
-    for(int i = 1; i < 6; i++){
-        nova.push_back(l0[i - 1]);
-    }
-    for(int i = 4; i < 10; i++){
-        nova.push_back(l0[i - 1]);
-    }
-    for(int i = 8; i < 14; i++){
-        nova.push_back(l0[i - 1]);
-    }
-    for(int i = 12; i < 18; i++){
-        nova.push_back(l0[i - 1]);
-    }
-    for(int i = 16; i < 22; i++){
-        nova.push_back(l0[i - 1]);
-    }
-    for(int i = 20; i < 26; i++){
-        nova.push_back(l0[i - 1]);
-    }
-    for(int i = 24; i < 30; i++){
-        nova.push_back(l0[i - 1]);
-    }
-    for(int i = 28; i < 33; i++){
-        nova.push_back(l0[i - 1]);
-    }
-    nova.push_back(l0[0]);
-    
-}
-
-
 
 int main(){
     char b[2], c[65];
@@ -343,5 +360,10 @@ int main(){
     l0 = ip.substr(0, 32);
     r0 = ip.substr(32, 32);
 
+    cout << l0 << "\n";
+    cout << r0 << "\n";
+
+    cripto(r0, l0, pc2, aux);
+    
     return 0;
 }
