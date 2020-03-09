@@ -3,7 +3,19 @@
 #include <cstdlib>
 #include <cstddef>
 #include <type_traits>
+#include <ctgmath>
 using namespace std;
+
+string s1[4] = {"e4d12fb83a6c5907", "0f74e2d1a6cb9538", "41e8d62bfc973a50", "fc8249175b3ea06d"};
+string s2[4] = {"f18e6b34972dc05a", "3d47f28ec01a69b5", "0e7ba4d158c6932f", "d8a13f42b67c05e9"};
+string s3[4] = {"a09e63f51dc7b428", "d709346a285ecbf1", "d6498f30b12c5ae7", "1ad069874fe3b52c"};
+string s4[4] = {"7de3069a1285bc4f", "d8b56f03472c1ae9", "a690cb7df13e5284", "3f06a1d8945bc72e"};
+string s5[4] = {"2c417ab6853fd0e9", "eb2c47d150fa3986", "421bad78f9c5630e", "b8c71e2d6f09a453"};
+string s6[4] = {"c1af92680d34e75b", "af427c9561de0b38", "9ef528c3704a1db6", "432c95fabe17608d"};
+string s7[4] = {"4b2ef08d3c975a61", "d0b7491ae35c2f86", "14bdc37eaf680592", "6bd814a7950fe23c"};
+string s8[4] = {"d2846fb1a93e50c7", "1fd8a374c56b0e92", "7b419ce206adf358", "21e74a8dfc90356b"};
+
+string* stotal[8] = {s1, s2, s3, s4, s5, s6, s7, s8};
 
 void convHex(string chave, string &palcon, char * b){
     for(int i = 0; i < chave.length(); i++){
@@ -284,12 +296,42 @@ void xorei(string &r0, string pc2){
     cout << r0 << "\n";
 }
 
+void redimen(string &r0){
+    string aux1, aux2, var;
+    int x, y;
+    cout << r0 << "\n";
+    for(int i = 0; i < 8; i++){
+        x = 0;
+        y = 0;
+        aux1[0] = r0[i*6];
+        aux1[1] = r0[i*6+5];
+        aux2 = r0.substr(i*6 + 1, 4);
+        for(int j = 0; j < 2; j++){
+            if(aux1[1 - j] == '1'){
+                x = x + 1 * pow(2, j);
+            }
+        }
+        for(int j = 0; j < 4; j++){
+            if(aux2[3 - j]== '1'){
+                y = y + 1 * pow(2, j);
+            }
+        }
+        var.push_back(stotal[i][x][y]);
+        aux1.clear();
+        aux2.clear();
+    }
+    r0.clear();
+    r0 = var;
+    cout << r0 << "\n";
+}
+
 void cripto(string &r0, string &l0, string *pc2, string aux){
     aux = l0;
     l0.clear();
     l0 = r0;
     ajuste(r0);
     xorei(r0, pc2[0]);
+    redimen(r0);
 }
 
 int main(){
