@@ -343,6 +343,7 @@ void permutIP(string &r0){
 }
 
 void cripto(string &r0, string &l0, string *pc2, string aux){
+    string auxF;
     for(int i = 0; i < 16; i++){
         aux = l0;
         l0.clear();
@@ -350,13 +351,13 @@ void cripto(string &r0, string &l0, string *pc2, string aux){
         ajuste(r0);
         xorei(r0, pc2[i]);
         redimen(r0);
-        aux.clear();
-        convBin(r0, aux);
+        auxF.clear();
+        convBin(r0, auxF);
         r0.clear();
-        r0 = aux;
+        r0 = auxF;
         cout << r0 << "\n";
         permutIP(r0);
-        xorei(r0, l0);
+        xorei(r0, aux);
     }
 }
 
