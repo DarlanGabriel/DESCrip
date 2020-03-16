@@ -15,6 +15,9 @@ string s6[4] = {"c1af92680d34e75b", "af427c9561de0b38", "9ef528c3704a1db6", "432
 string s7[4] = {"4b2ef08d3c975a61", "d0b7491ae35c2f86", "14bdc37eaf680592", "6bd814a7950fe23c"};
 string s8[4] = {"d2846fb1a93e50c7", "1fd8a374c56b0e92", "7b419ce206adf358", "21e74a8dfc90356b"};
 
+int pF[32] = {16, 7, 20, 21, 29, 12, 28, 17, 1, 15, 23, 26, 5, 18, 31, 10, 2, 8, 24, 14,
+32, 27, 3, 9, 19, 13, 30, 6, 22, 11, 4, 25};
+
 string* stotal[8] = {s1, s2, s3, s4, s5, s6, s7, s8};
 
 void convHex(string chave, string &palcon, char * b){
@@ -283,7 +286,7 @@ void ajuste(string &r0){
 
 void xorei(string &r0, string pc2){
     string aux;
-    for(int i = 0; i < 48; i++){
+    for(int i = 0; i < r0.length(); i++){
         if(r0[i] == pc2[i]){
             aux.push_back('0');
         }else{
@@ -325,13 +328,32 @@ void redimen(string &r0){
     cout << r0 << "\n";
 }
 
+void permutIP(string &r0){
+    string aux;
+    for(int i = 0; i < 32; i++){
+        aux.push_back(r0[pF[i] - 1]);
+    }
+    r0.clear();
+    r0 = aux;
+    cout << r0 << "\n";
+}
+
 void cripto(string &r0, string &l0, string *pc2, string aux){
-    aux = l0;
-    l0.clear();
-    l0 = r0;
-    ajuste(r0);
-    xorei(r0, pc2[0]);
-    redimen(r0);
+    for(int i = 0; i < 16; i++){
+        aux = l0;
+        l0.clear();
+        l0 = r0;
+        ajuste(r0);
+        xorei(r0, pc2[i]);
+        redimen(r0);
+        aux.clear();
+        convBin(r0, aux);
+        r0.clear();
+        r0 = aux;
+        cout << r0 << "\n";
+        permutIP(r0);
+        xorei(r0, l0);
+    }
 }
 
 int main(){
