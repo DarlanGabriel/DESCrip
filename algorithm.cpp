@@ -363,7 +363,7 @@ int main(){
     string palbin;
     string pc1, c0, d0;
     string cn[16], dn[16], kn[16], cndn[16], pc2[16];
-    string palavra, ip, l0, r0, aux;
+    string palavra, ip, l0, r0, r16l16, aux;
 
     getline(cin, chave);
     convHex(chave, palcon, b);
@@ -428,6 +428,14 @@ int main(){
     cout << r0 << "\n";
 
     cripto(r0, l0, pc2, aux);
+
+    for(int i = 0; i < 32; i++){
+        r16l16.push_back(r0[i]);
+    }
+    for(int i = 0; i < 32; i++){
+        r16l16.push_back(l0[i]);
+    }
+    cout << r16l16 << "\n";
     
     return 0;
 }
