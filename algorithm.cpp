@@ -18,6 +18,10 @@ string s8[4] = {"d2846fb1a93e50c7", "1fd8a374c56b0e92", "7b419ce206adf358", "21e
 int pF[32] = {16, 7, 20, 21, 29, 12, 28, 17, 1, 15, 23, 26, 5, 18, 31, 10, 2, 8, 24, 14,
 32, 27, 3, 9, 19, 13, 30, 6, 22, 11, 4, 25};
 
+int pU[64] = {40, 8, 48, 16, 56, 24, 64, 32, 39, 7, 47, 15, 55, 23, 63, 31, 38, 6, 46, 14,
+54, 22, 62, 30, 37, 5, 45, 13, 53, 21, 61, 29, 36, 4, 44, 12, 52, 20, 60, 28, 35, 3, 43, 11,
+51, 19, 59, 27, 34, 2, 42, 10, 50, 18, 58, 26, 33, 1, 41, 9, 49, 17, 57, 25};
+
 string* stotal[8] = {s1, s2, s3, s4, s5, s6, s7, s8};
 
 void convHex(string chave, string &palcon, char * b){
@@ -356,6 +360,16 @@ void cripto(string &r0, string &l0, string *pc2, string aux){
     }
 }
 
+void finalmente(string &r16l16){
+    string aux;
+    for(int i = 0; i < 64; i++){
+        aux.push_back(r16l16[pU[i] - 1]);
+    }
+    r16l16.clear();
+    r16l16 = aux;
+    cout << r16l16 << "\n";
+}
+
 int main(){
     char b[2], c[65];
     int i = 0;
@@ -436,6 +450,8 @@ int main(){
         r16l16.push_back(l0[i]);
     }
     cout << r16l16 << "\n";
-    
+
+    finalmente(r16l16);
+
     return 0;
 }
